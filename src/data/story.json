@@ -1,0 +1,47 @@
+{
+  "title": "Test Story",
+  "start": "start",
+  "luckLevels": {
+    "lucky": { "label": "Lucky", "bonus": 0.2 },
+    "standard": { "label": "Standard", "bonus": 0 },
+    "unlucky": { "label": "Unlucky", "bonus": -0.2 }
+  },
+  "scenes": {
+    "start": {
+      "text": "START. This is the first scene. Two normal choices.",
+      "image": "",
+      "choices": [
+        { "text": "Go to the dice scene", "goto": "dice" },
+        { "text": "End the game now", "goto": "end_quit" }
+      ]
+    },
+    "dice": {
+      "text": "DICE. Here you can roll (50% chance) or go back to the start.",
+      "image": "",
+      "choices": [
+        {
+          "text": "Roll the dice (50%)",
+          "chance": 0.5,
+          "success": "end_win",
+          "failure": "end_lose"
+        },
+        { "text": "Go back to the start", "goto": "start" }
+      ]
+    },
+    "end_win": {
+      "text": "ENDING: WIN. The roll was a success.",
+      "image": "",
+      "choices": []
+    },
+    "end_lose": {
+      "text": "ENDING: LOSE. The roll failed.",
+      "image": "",
+      "choices": []
+    },
+    "end_quit": {
+      "text": "ENDING: QUIT. You ended the game without rolling.",
+      "image": "",
+      "choices": []
+    }
+  }
+}
