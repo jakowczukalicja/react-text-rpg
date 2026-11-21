@@ -1,8 +1,19 @@
+import { useState } from 'react'
+import story from './data/story.json'
+import Scene from './components/Scene'
+
 function App() {
+  const [sceneId, setSceneId] = useState(story.start)
+  const scene = story.scenes[sceneId]
+
+  function handleChoice(choice) {
+    setSceneId(choice.goto)
+  }
+
   return (
     <div>
-      <h1>My RPG Game</h1>
-      <p>You stand before the gate of an old castle. A cold wind is blowing.</p>
+      <h1>{story.title}</h1>
+      <Scene scene={scene} onChoice={handleChoice} />
     </div>
   )
 }
