@@ -10,7 +10,7 @@
     "start": {
       "text": "START. This is the first scene. Two normal choices.",
       "location": "The Crossroads",
-      "image": "",
+      "image": "/images/test.jpg",
       "choices": [
         { "text": "Go to the dice scene", "goto": "dice" },
         { "text": "End the game now", "goto": "end_quit" }
