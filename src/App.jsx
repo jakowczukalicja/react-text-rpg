@@ -3,10 +3,18 @@ import { getNextSceneId } from './engine/gameLogic'
 import story from './data/story.json'
 import Scene from './components/Scene'
 import StartScreen from './components/StartScreen'
+import StatusPanel from './components/StatusPanel'
 
 function App() {
   const [sceneId, setSceneId] = useState(story.start)
   const [luck, setLuck] = useState(null)
+  const [steps, setSteps] = useState(0)
+
+  function handleRestart() {
+    setSceneId(story.start)
+    setLuck(null)
+    setSteps(0)
+  }
 
   if (luck === null) {
     return (
@@ -19,17 +27,24 @@ function App() {
   }
 
   const scene = story.scenes[sceneId]
-  const luckBonus = story.luckLevels[luck].bonus
+  const luckLevel = story.luckLevels[luck]
 
   function handleChoice(choice) {
-    const nextId = getNextSceneId(choice, luckBonus)
+    const nextId = getNextSceneId(choice, luckLevel.bonus)
     setSceneId(nextId)
+    setSteps(steps + 1)
   }
 
   return (
     <div>
       <h1>{story.title}</h1>
-      <p>Luck: {story.luckLevels[luck].label}</p>
+      <StatusPanel
+        luckLabel={luckLevel.label}
+        luckBonus={luckLevel.bonus}
+        location={scene.location}
+        steps={steps}
+        onRestart={handleRestart}
+      />
       <Scene scene={scene} onChoice={handleChoice} />
     </div>
   )
