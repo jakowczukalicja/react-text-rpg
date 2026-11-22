@@ -1,10 +1,10 @@
 function StartScreen({ title, luckLevels, onSelect }) {
   return (
-    <div>
-      <h1>{title}</h1>
+    <div className="game">
+      <h1 className="game-title">{title}</h1>
       <p>How lucky do you feel today?</p>
       {Object.entries(luckLevels).map(([key, level]) => (
-        <button key={key} onClick={() => onSelect(key)}>
+        <button className="luck-button" key={key} onClick={() => onSelect(key)}>
           {level.label}
         </button>
       ))}
