@@ -3,11 +3,11 @@ function StatusPanel({ luckLabel, luckBonus, location, steps, onRestart }) {
   const bonusText = bonusPercent > 0 ? `+${bonusPercent}%` : `${bonusPercent}%`
 
   return (
-    <div>
+    <div className="status-panel">
       {location && <p> {location}</p>}
-      <p>Luck: {luckLabel} ({bonusText})</p>
+      <p>Luck bonus: {luckLabel} ({bonusText})</p>
       <p>Steps: {steps}</p>
-      <button onClick={onRestart}>Restart</button>
+      <button className="restart-button" onClick={onRestart}>Restart</button>
     </div>
   )
 }

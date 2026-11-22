@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500&family=Nunito:wght@400;600&display=swap');
+
+:root {
+  --page-bg: #b9d8a8;
+  --card-bg: #fffaf3;
+  --matcha: #8db580;
+  --matcha-light: #a9cc9c;
+  --matcha-dark: #5b7f4a;
+  --sakura: #f4a6b8;
+  --sakura-hover: #ee8fa5;
+  --sakura-light: #fbd3dc;
+  --sakura-dark: #c9718a;
+  --text: #2f4229;
+  --button-text: #3d1f28;
+
+  --font-title: 'Pixelify Sans', sans-serif;
+  --font-body: 'Nunito', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: var(--page-bg);
+  font-family: var(--font-body);
+  color: var(--text);
+}
+
+button {
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--button-text);
+  background: var(--sakura);
+  border: 3px solid var(--sakura-dark);
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+button:hover {
+  background: var(--sakura-hover);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(1px);
+}

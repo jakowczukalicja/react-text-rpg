@@ -4,6 +4,7 @@ import story from './data/story.json'
 import Scene from './components/Scene'
 import StartScreen from './components/StartScreen'
 import StatusPanel from './components/StatusPanel'
+import './App.css'
 
 function App() {
   const [sceneId, setSceneId] = useState(story.start)
@@ -36,8 +37,8 @@ function App() {
   }
 
   return (
-    <div>
-      <h1>{story.title}</h1>
+    <div className="game">
+      <h1 className="game-title">{story.title}</h1>
       <StatusPanel
         luckLabel={luckLevel.label}
         luckBonus={luckLevel.bonus}
