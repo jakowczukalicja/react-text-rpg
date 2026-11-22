@@ -1,48 +1,275 @@
 {
-  "title": "Test Story",
-  "start": "start",
+  "title": "The Tea House",
+  "start": "arrival",
   "luckLevels": {
-    "lucky": { "label": "Lucky", "bonus": 0.2 },
-    "standard": { "label": "Standard", "bonus": 0 },
-    "unlucky": { "label": "Unlucky", "bonus": -0.2 }
+    "blessed": {
+      "label": "Blessed",
+      "bonus": 1
+    },
+    "lucky": {
+      "label": "Lucky",
+      "bonus": 0.3
+    },
+    "standard": {
+      "label": "Standard",
+      "bonus": 0
+    },
+    "unlucky": {
+      "label": "Unlucky",
+      "bonus": -0.3
+    },
+    "cursed": {
+      "label": "Cursed",
+      "bonus": -1
+    }
   },
   "scenes": {
-    "start": {
-      "text": "START. This is the first scene. Two normal choices.",
-      "location": "The Crossroads",
-      "image": "/images/test.jpg",
-      "choices": [
-        { "text": "Go to the dice scene", "goto": "dice" },
-        { "text": "End the game now", "goto": "end_quit" }
-      ]
-    },
-    "dice": {
-      "text": "DICE. Here you can roll (50% chance) or go back to the start.",
-      "location": "The Gambling Table",
-      "image": "",
+    "arrival": {
+      "text": "The bus leaves you alone at the edge of a small seaside village. In your hand is the key to a tiny old cottage you bought with all your savings. For years you have dreamed of opening your own tea house, and now it's finally happening. The grand opening is tomorrow at noon.",
+      "location": "Bus Stop",
+      "image": "/images/arrival.png",
       "choices": [
         {
-          "text": "Roll the dice (50%)",
-          "chance": 0.5,
-          "success": "end_win",
-          "failure": "end_lose"
+          "text": "Find your cottage and get to work",
+          "goto": "tea_house"
         },
-        { "text": "Go back to the start", "goto": "start" }
+        {
+          "text": "Give up and catch the evening ferry",
+          "goto": "ending_ferry"
+        }
       ]
     },
-    "end_win": {
-      "text": "ENDING: WIN. The roll was a success.",
-      "image": "",
+    "ending_ferry": {
+      "text": "Standing in front of the old cottage, you suddenly feel it's all too much. You sell it to the first buyer you find and take the evening ferry. As you leave, you can't help but wonder what your tea house could have become.",
+      "location": "The Evening Ferry",
+      "image": "/images/ferry.png",
       "choices": []
     },
-    "end_lose": {
-      "text": "ENDING: LOSE. The roll failed.",
-      "image": "",
+    "tea_house": {
+      "text": "Your little cottage sits at the end of an empty street. Inside, everything is covered in dust and the shelves are completely empty. Not a single tea leaf. You need to find some tea before tomorrow.",
+      "location": "The Little Tea House",
+      "image": "/images/tea_house.png",
+      "choices": [
+        {
+          "text": "Head to the village shop",
+          "goto": "shop"
+        }
+      ]
+    },
+    "shop": {
+      "text": "The shopkeeper takes a box of fine black tea from the shelf. 'Best in the village,' he says, but the price is far too high for you. Through the window you can see a path toward the cliffs, where they say wild mint grows.",
+      "location": "Village Shop",
+      "image": "/images/market.png",
+      "choices": [
+        {
+          "text": "Ask for a discount",
+          "chance": 0.5,
+          "success": "tea_bought",
+          "failure": "market_fail"
+        },
+        {
+          "text": "Go up to the cliffs for wild mint",
+          "goto": "cliffs"
+        }
+      ]
+    },
+    "market_fail": {
+      "text": "The shopkeeper laughs and shakes his head. 'Nice try, newcomer.' He puts the box back on the shelf. Looks like the cliffs are your only hope now.",
+      "location": "Village Shop",
+      "image": "/images/market.png",
+      "choices": [
+        {
+          "text": "Head up to the cliffs",
+          "goto": "cliffs"
+        }
+      ]
+    },
+    "cliffs": {
+      "text": "The wind is blowing as you reach the top of the cliffs. Bright green mint grows just below the edge, right above the waves. It smells wonderful, and it looks very hard to reach.",
+      "location": "Windy Cliffs",
+      "image": "/images/cliffs.png",
+      "choices": [
+        {
+          "text": "Carefully climb down to the mint",
+          "chance": 0.6,
+          "success": "mint_found",
+          "failure": "ending_ankle"
+        }
+      ]
+    },
+    "ending_ankle": {
+      "text": "You reach for the mint, lean a little too far and... oops. You slide down the hill and end up in some bushes. Nothing broken, but you're scratched and your ankle is badly twisted. You spend the evening with your foot in a bucket of cold water. The grand opening? Maybe next week.",
+      "location": "Windy Cliffs",
+      "image": "/images/ankle.png",
       "choices": []
     },
-    "end_quit": {
-      "text": "ENDING: QUIT. You ended the game without rolling.",
-      "image": "",
+    "tea_bought": {
+      "text": "After a friendly talk, the shopkeeper sighs and gives you the tea for a better price. 'You're good at this, newcomer. I like that,' he smiles.",
+      "location": "Village Street",
+      "image": "/images/road.png",
+      "choices": [
+        {
+          "text": "Return to the tea house",
+          "goto": "decorate"
+        }
+      ]
+    },
+    "mint_found": {
+      "text": "You pick a handful of fresh mint. This will make the most refreshing tea the village has ever tasted.",
+      "location": "Windy Cliffs",
+      "image": "/images/road.png",
+      "choices": [
+        {
+          "text": "Return to the tea house",
+          "goto": "decorate"
+        }
+      ]
+    },
+    "decorate": {
+      "text": "The tea is ready, but the room still feels grey and empty. It needs something special to welcome the guests. An old lady in the village grows pink flowers in little pots, but a storm is coming. At the edge of the forest there are trees in clay pots, beautiful but very heavy.",
+      "location": "The Little Tea House",
+      "image": "/images/tea_house.png",
+      "choices": [
+        {
+          "text": "Bring pink flowers in pots before the storm",
+          "chance": 0.7,
+          "success": "flowers",
+          "failure": "flowers_ruined"
+        },
+        {
+          "text": "Carry the heavy trees from the forest",
+          "chance": 0.5,
+          "success": "trees",
+          "failure": "trees_ruined"
+        }
+      ]
+    },
+    "flowers": {
+      "text": "You make it back just as the storm starts. Soon every table and window has a little pot of pink flowers, and the whole tea house smells like spring.",
+      "location": "The Little Tea House",
+      "image": "/images/flowers.png",
+      "choices": [
+        {
+          "text": "Go and invite some guests",
+          "goto": "village"
+        }
+      ]
+    },
+    "trees": {
+      "text": "Out of breath, you set the last pot down by the window. With green leaves in every corner, the tea house feels like a secret garden.",
+      "location": "The Little Tea House",
+      "image": "/images/trees.png",
+      "choices": [
+        {
+          "text": "Go and invite some guests",
+          "goto": "village"
+        }
+      ]
+    },
+    "flowers_ruined": {
+      "text": "The storm catches you halfway home. Pink petals fly all over the wet street.",
+      "location": "Village Street",
+      "image": "/images/rain.png",
+      "choices": [
+        {
+          "text": "Try the trees instead",
+          "chance": 0.5,
+          "success": "trees",
+          "failure": "trees_ruined"
+        },
+        {
+          "text": "Leave it as it is",
+          "goto": "village"
+        }
+      ]
+    },
+    "trees_ruined": {
+      "text": "Halfway down the street, the pot slips from your arms and breaks.",
+      "location": "Village Street",
+      "image": "/images/mess.png",
+      "choices": [
+        {
+          "text": "Try the flowers instead",
+          "chance": 0.7,
+          "success": "flowers",
+          "failure": "flowers_ruined"
+        },
+        {
+          "text": "Leave it as it is",
+          "goto": "village"
+        }
+      ]
+    },
+    "village": {
+      "text": "The tea house is ready, and now it just needs guests. The lights are coming on in the tavern. Through the window of the little fishing shop by the harbor, you can see an old fisherman sitting alone, looking sad.",
+      "location": "Village Square",
+      "image": "/images/village.png",
+      "choices": [
+        {
+          "text": "Hang posters around the village",
+          "goto": "opening_quiet"
+        },
+        {
+          "text": "Go to the tavern and invite everyone",
+          "chance": 0.5,
+          "success": "opening_full",
+          "failure": "opening_quiet"
+        },
+        {
+          "text": "Visit the fishing shop",
+          "goto": "fisherman"
+        }
+      ]
+    },
+    "fisherman": {
+      "text": "The little bell above the door rings as you step inside. The old fisherman looks up from behind the counter. 'Lost my lucky hook this morning,' he says quietly. 'Had it for forty years. It fell off the dock right behind the shop.' Through the back window you can see something shiny under the waves.",
+      "location": "Fishing Shop",
+      "image": "/images/fish_shop.png",
+      "choices": [
+        {
+          "text": "Dive in and look for the hook",
+          "chance": 0.4,
+          "success": "fisherman_happy",
+          "failure": "fisherman_sad"
+        },
+        {
+          "text": "Wish him luck and head back",
+          "goto": "village"
+        }
+      ]
+    },
+    "fisherman_happy": {
+      "text": "You come back into the shop, wet but smiling, with the little silver hook in your hand. The old fisherman's face lights up. 'Thank you! You're the one opening that tea house, right? Don't you worry, I'll make sure the whole village comes tomorrow!'",
+      "location": "Fishing Shop",
+      "image": "/images/fisherman.png",
+      "choices": [
+        {
+          "text": "Wait for tomorrow",
+          "goto": "opening_full"
+        }
+      ]
+    },
+    "fisherman_sad": {
+      "text": "You search until your hands are cold, but the hook is nowhere to be found. Back in the shop, the old fisherman thanks you for trying, but he still looks sad.",
+      "location": "Fishing Shop",
+      "image": "/images/fish_shop.png",
+      "choices": [
+        {
+          "text": "Return to the village",
+          "goto": "village"
+        }
+      ]
+    },
+    "opening_quiet": {
+      "text": "Noon arrives. A few curious neighbors come in, drink your tea and leave with warm smiles. It's a small start, but as you wash the cups that evening, you know your dream has finally begun.",
+      "location": "The Little Tea House",
+      "image": "/images/opening_quiet.png",
+      "choices": []
+    },
+    "opening_full": {
+      "text": "At noon you open the doors, and there is a line all the way down the street. Fishermen, neighbors, the shopkeeper, the old lady with her flowers... You are very proud of yourself.",
+      "location": "The Little Tea House",
+      "image": "/images/opening_full.png",
       "choices": []
     }
   }

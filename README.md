@@ -1,16 +1,55 @@
-# React + Vite
+# Text based RPG
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A text-based RPG engine for the browser, built with **React**. The whole story lives in one JSON file (`src/data/story.json`), so you can write a new story without changing any code.
 
-Currently, two official plugins are available:
+In the included story, you arrive in a small seaside village with one dream: to open your own tea house. The grand opening is tomorrow at noon.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Scenes with choices that lead to different parts of the story (including a side quest)
+- Random actions with a chance of success
+- Luck levels chosen at the start, which change the chance of every random action
+- Multiple endings
+- Status panel with location, luck, steps and a restart button
+- Optional scene images
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## How to run
 
-## Expanding the Oxlint configuration
+```bash
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Then open `http://localhost:5173`.
+
+## Story format
+
+```json
+{
+  "title": "My Story",
+  "start": "first_scene",
+  "luckLevels": {
+    "lucky": { "label": "Lucky", "bonus": 0.2 }
+  },
+  "scenes": {
+    "first_scene": {
+      "text": "You stand at a crossroads.",
+      "location": "Crossroads",
+      "image": "/images/crossroads.png",
+      "choices": [
+        { "text": "Go left", "goto": "left_path" },
+        { "text": "Jump over the river", "chance": 0.6, "success": "other_side", "failure": "in_the_water" }
+      ]
+    }
+  }
+}
+```
+
+- A choice with `goto` always leads to the same scene.
+- A choice with `chance` rolls the dice: the final chance is `chance` + the luck `bonus`, limited to 5–95%.
+- A scene with an empty `choices` list is an ending.
+- `location` and `image` are optional.
+
+## Credits
+
+Scene images in the example story are screenshots from **Stardew Valley** used for non-commercial educational purposes
